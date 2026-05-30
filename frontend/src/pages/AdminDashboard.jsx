@@ -16,7 +16,7 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    loadProducts();
+    products.getAll().then(setProductList).catch(console.error);
   }, []);
 
   const loadProducts = async () => {
@@ -76,7 +76,7 @@ export default function AdminDashboard() {
       try {
         await products.delete(id);
         loadProducts();
-      } catch (err) {
+      } catch {
         alert('Error eliminando producto');
       }
     }
